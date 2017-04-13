@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.ArrayList;
 
 import Models.Fish;
+import Views.MainView;
 
 public class Main {
   static List<Fish> fishes;
 
   public static void main(String[] args) {
-    Initialize();
-    while (Run()) {
-    }
+    //Initialize();
+    new MainView();
   }
 
   public static void Initialize() {
