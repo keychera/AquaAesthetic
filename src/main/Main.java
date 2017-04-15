@@ -10,7 +10,6 @@ import controllers.MainController;
 import java.util.ArrayList;
 
 import models.Fish;
-import views.MainView;
 
 public class Main {
   public static void main(String[] args) {

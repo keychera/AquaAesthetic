@@ -50,7 +50,10 @@ public class MainController extends JFrame {
       @Override
       public void actionPerformed(ActionEvent arg0) {
         Random random = new Random();
-        fishController.addFish(random.nextInt(aquariumWidth), random.nextInt(aquariumHeight));
+        int bound = aquariumWidth / 10;
+        int randX = bound + random.nextInt(aquariumWidth - (2 * bound));
+        int randY = bound + random.nextInt(aquariumHeight - (2 * bound));
+        fishController.addFish(randX, randY);
       }
     });
 
