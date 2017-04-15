@@ -21,7 +21,7 @@ public class FishController {
 
   public void perform() {
     for (Fish fish : fishes) {
-      fish.move(DISTANCEPERFRAME, "west");
+      fish.move(DISTANCEPERFRAME, "east");
     }
   }
 
