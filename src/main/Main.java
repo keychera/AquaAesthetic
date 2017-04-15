@@ -3,8 +3,8 @@ package main;
 import java.util.List;
 import java.util.ArrayList;
 
-import Models.Fish;
-import Views.MainView;
+import models.Fish;
+import views.MainView;
 
 public class Main {
   static List<Fish> fishes;
@@ -18,7 +18,7 @@ public class Main {
     if (fishes != null) {
       fishes = new ArrayList<Fish>();
     }
-    fishes.add(new Fish());
+    fishes.add(new Fish(0, 0, null));
   }
 
   private static boolean Run() {
