@@ -38,27 +38,61 @@ public class Fish {
 	};
 	public void move(int distance, String direction){
 		switch (direction) {
-        case "north":  		this.y-=distance;
+        case "north":  	this.y-=distance;
                  break;
         case "north east":  this.y-=distance; 
-        					this.x+=distance;
+        		    this.x+=distance;
         		break;
-        case "east":  		this.x+=distance;
+        case "east":  this.x+=distance;
         		break;
         case "south east":  this.x+=distance;
-        					this.y+=distance;
+        		this.y+=distance;
         		break;
-        case "south":  		this.y+=distance;
+        case "south":  this.y+=distance;
         		break;
         case "south west":  this.x-=distance;
-        					this.y+=distance;
+        		this.y+=distance;
         		break;
-        case "west":  		this.x-=distance;
+        case "west":  this.x-=distance;
         		break;
         case "north west":  this.x-=distance;
-        					this.y-=distance;
-        break;
+        		this.y-=distance;
+        		break;
 		}
 	};
+	
+	public void move(int distance, int direction){
+		switch (direction) {
+        case 1:  this.y-=distance;
+                 	break;
+        case 2:  this.y-=distance; 
+        	 this.x+=distance;
+        		break;
+        case 3:  this.x+=distance;
+        		break;
+        case 4:  this.x+=distance;
+        	 this.y+=distance;
+        		break;
+        case 5:  this.y+=distance;
+        		break;
+        case 6:  this.x-=distance;
+        	 this.y+=distance;
+        		break;
+        case 7:  this.x-=distance;
+        		break;
+        case 8:  this.x-=distance;
+        	 this.y-=distance;
+        		break;
+		}
+	};
+	
+	public void move(){
+		Random rand = new Random();
+		int dis = rand.nextInt(10)+1;
+		int dir = rand.nextInt(8)+1;
+		
+		move(dis,dir);
+	};
+
 
 }
