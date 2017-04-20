@@ -86,13 +86,21 @@ public class Fish {
 		}
 	};
 	
+	public void delayedMove(int delay){
+		while(delay>0){
+			delay-=1;
+		}
+	};
+	
 	public void move(){
 		Random rand = new Random();
 		int dis = rand.nextInt(10)+1;
 		int dir = rand.nextInt(8)+1;
+		int delay = rand.nextInt(10)+1;
 		
+		delayedMove(delay);
 		move(dis,dir);
 	};
-
+	
 
 }
