@@ -10,9 +10,13 @@ import javax.swing.JPanel;
 import models.Fish;
 
 public class AquariumView extends JPanel {
-  private static final int VIEWWIDTH = 400;
-  private static final int VIEWHEIGHT = 400;
-  private List<Fish> fishes;
+  /**
+	 *		a  e  s  t  h  e  t  i  c  s 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final int VIEWWIDTH = 400;
+	private static final int VIEWHEIGHT = 400;
+	private List<Fish> fishes;
 
   public AquariumView(List<Fish> fishes) {
     this.fishes = fishes;
