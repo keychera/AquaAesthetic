@@ -4,14 +4,18 @@ import java.awt.Color;
 import java.util.Random;
 
 public class Fish {
-	
-	private int x,y;
-	private Color colors;
+  private int x,y;
+  private Color colors;
+  private int delay;
+  private int dis;
+  private int dir;
 	
 	public Fish(int x, int y, Color colors){
 		this.x = x;
 		this.y = y;
 		this.colors = colors;
+		this.delay = -1;
+		this.dis = 1;
 	};
 	
 	public int getX(){
@@ -87,19 +91,19 @@ public class Fish {
 		}
 	};
 	
-	public void delayedMove(int delay){
-		while(delay>0){
-			delay-=1;
-		}
+	public void delayedMove(){
+		delay-=1;
 	};
 	
 	public void move(){
 		Random rand = new Random();
-		int dis = rand.nextInt(10)+1;
-		int dir = rand.nextInt(8)+1;
-		int delay = rand.nextInt(10)+1;
+		if (delay < 0) {
+		    dis = rand.nextInt(9) % 2; 
+    		dir = rand.nextInt(8)+1;
+    		delay = rand.nextInt(20)+10;
+		}
 		
-		delayedMove(delay);
+		delayedMove();
 		move(dis,dir);
 	};
 	
