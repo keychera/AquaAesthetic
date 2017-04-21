@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.Random;
 
-public class Food extends MovingObject {
+public class Food extends movingObject {
 	
 	private int x,y;
 	private Color colors;
