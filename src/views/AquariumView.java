@@ -24,7 +24,7 @@ public class AquariumView extends JPanel {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     for (Fish fish : fishes) {
-      g.setColor(fish.getColors());
+      g.setColor(Color.BLACK);
       g.fillOval(fish.getX(), fish.getY(), 20, 20);
     }
   }

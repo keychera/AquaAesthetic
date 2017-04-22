@@ -1,86 +1,50 @@
 package models;
 
-import java.awt.Color;
 import java.util.Random;
 
 import views.AquariumView;
 
-public class Fish extends movingObject {
-  public static final int FISHDIMENSION = 10;
-  private static final float MAXDISTANCE = 1;
-  private Color colors;
+public class Fish extends MovingObject {
+	private float distancePerStep = 2;
+	private int nextDecisionTimer;
+	private int currentTargetX;
+	private int currentTargetY;
 
-  private int delayUntilNewDecision;
-  private float dis;
-  private float dir;
+	public Fish() {
+		this(0, 0);
+	}
 
-  public Fish(int x, int y, Color colors) {
-    this.x = x;
-    this.y = y;
-    this.colors = colors;
-    this.delayUntilNewDecision = -1;
-    this.dis = 1;
-    this.dir = (float) (Math.PI * (new Random().nextFloat() * 2));
-  };
+	public Fish(int x, int y) {
+		super(x, y);
+		nextDecisionTimer = -1;
+	}
 
-  public int getX() {
-    return this.x;
-  };
+	public void move() {
+		if (isTimeToDecideYet()) {
+			Random rand = new Random();
+			nextDecisionTimer = rand.nextInt(30) + 15;
+			currentTargetX = rand.nextInt(AquariumView.VIEWWIDTH);
+			currentTargetY = rand.nextInt(AquariumView.VIEWHEIGHT);
+			//for option 2
+			distancePerStep = rand.nextInt(10) + 1;
+		} else {
+			// option 1
+			// moveTowards(currentTargetX, currentTargetY, nextDecisionTimer +
+			// 1);
+			// option 2
+			moveDirection(distancePerStep, (float) Math.atan2(currentTargetY - this.y, currentTargetX - this.x));
+			nextDecisionTimer--;
+		}
+	}
 
-  public int getY() {
-    return this.y;
-  };
+	private boolean isTimeToDecideYet() {
+		return (nextDecisionTimer < 0 || isNearTargetYet());
+	}
 
-  public Color getColors() {
-    return this.colors;
-  };
+	private boolean isNearTargetYet() {
+		int dx = Math.abs(currentTargetX - this.x);
+		int dy = Math.abs(currentTargetY - this.y);
+		return (dx < 10 && dy < 10);
+	}
 
-  public void setX(int x1) {
-    this.x = x1;
-  };
-
-  public void setY(int y1) {
-    this.y = y1;
-  };
-
-  public void setColors(Color colors1) {
-    this.colors = colors1;
-  };
-
-  public void delayDecision() {
-    delayUntilNewDecision -= 1;
-  };
-
-  public boolean timeToDecide() {
-    return (delayUntilNewDecision < 0);
-  }
-
-  public void move() {
-    Random rand = new Random();
-    if (timeToDecide()) {
-      if (rand.nextInt(2) == 0) {
-        dir = dir + (float) (Math.PI * rand.nextFloat());
-      } else {
-        dir = dir + (float) (Math.PI * rand.nextFloat());
-      }
-      delayUntilNewDecision = rand.nextInt(10) + 15;
-    }
-
-    delayDecision();
-    move(dis, dir);
-    fixPosition();
-  };
-
-  public void fixPosition() {
-    if (x > AquariumView.VIEWWIDTH + FISHDIMENSION) {
-      x = x % AquariumView.VIEWWIDTH - FISHDIMENSION;
-    } else if (x < -FISHDIMENSION) {
-      x += AquariumView.VIEWWIDTH + FISHDIMENSION;
-    }
-    if (y > AquariumView.VIEWWIDTH + FISHDIMENSION) {
-      y = y % AquariumView.VIEWHEIGHT - FISHDIMENSION;
-    } else if (y < -FISHDIMENSION) {
-      y += AquariumView.VIEWHEIGHT + FISHDIMENSION;
-    }
-  }
 }

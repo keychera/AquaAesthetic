@@ -26,11 +26,11 @@ public class FishController {
   }
 
   public void addFish() {
-    addFish(10, 10);
+    addFish(30, 30);
   }
 
   public void addFish(int x, int y) {
-    Fish f = new Fish(x, y, Color.BLACK);
+    Fish f = new Fish(x, y);
     fishes.add(f);
   }
 }
