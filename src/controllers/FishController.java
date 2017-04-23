@@ -1,14 +1,10 @@
 package controllers;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import models.Fish;
 
-public class FishController {
-  private static final int DISTANCEPERFRAME = 4;
+public class FishController implements SubController {
   private List<Fish> fishes;
   
   public FishController() {
@@ -25,11 +21,11 @@ public class FishController {
     }
   }
 
-  public void addFish() {
-    addFish(30, 30);
+  public void addNewEntity() {
+    addNewEntity(30, 30);
   }
 
-  public void addFish(int x, int y) {
+  public void addNewEntity(int x, int y) {
     Fish f = new Fish(x, y);
     fishes.add(f);
   }
