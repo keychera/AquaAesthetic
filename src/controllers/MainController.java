@@ -81,25 +81,25 @@ public class MainController extends JFrame implements ActionListener {
 
   private void initializeControlPanel() {
     controlPanel = new JPanel();
-    addButtonToControlPanel(addFishButton,"add fish");
-    addButtonToControlPanel(pauseButton,"pause");
+    addFishButton = new JButton("add fish");
+    addButtonToControlPanel(addFishButton);
+    pauseButton = new JButton("pause");
+    addButtonToControlPanel(pauseButton);
 
     setLayout(new BorderLayout());
     add(aquariumPanel, BorderLayout.CENTER);
     add(controlPanel, BorderLayout.PAGE_END);
   }
 
-  private void addButtonToControlPanel(JButton button, String message) {
-    addButtonToControlPanel(button, message, message);
+  private void addButtonToControlPanel(JButton button) {
+    addButtonToControlPanel(button, button.getText());
   }
 
-  private void addButtonToControlPanel(JButton button, String message, String label) {
-    button = new JButton(label);
-    button.setActionCommand(message);
+  private void addButtonToControlPanel(JButton button, String label) {
+    button.setActionCommand(label);
     button.addActionListener(this);
     controlPanel.add(button);
   }
-
 
   private void initializeGameLoop() {
     isAppRunning = true;
