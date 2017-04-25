@@ -5,6 +5,8 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
+import models.Aquarium;
+
 public class GameLoopController extends SwingWorker<String, Boolean> {
   private static final long FRAMEDELAY = 25;
   private List<ISubController> subControllers;
@@ -33,6 +35,7 @@ public class GameLoopController extends SwingWorker<String, Boolean> {
         for (ISubController subController : subControllers) {
           subController.perform();
         }
+        Aquarium.money++;
         publish(true);
       } else {
         publish(false);

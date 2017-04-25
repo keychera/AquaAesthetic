@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import models.Aquarium;
 import views.AquariumView;
+import views.StatusPanelView;
 
 public class GuiController extends JFrame implements ActionListener {
   // app dimension
@@ -19,11 +21,14 @@ public class GuiController extends JFrame implements ActionListener {
   // app swing component
   private static JPanel aquariumPanel;
   private static JPanel controlPanel;
+  private static JPanel statusPanel;
   private JButton addFishButton;
   private JButton pauseButton;
   private JButton addFoodButton;
+  private JLabel moneyLabel;
   private FishController fishController;
   private FoodController foodController;
+  
 
   public GuiController(FishController fishController, FoodController foodController) {
     appWidth = Aquarium.WIDTH;
@@ -34,6 +39,7 @@ public class GuiController extends JFrame implements ActionListener {
 
     this.fishController = fishController;
     this.foodController = foodController;
+    
     aquariumPanel = new AquariumView(fishController.getFishes(), foodController.getFoods());
 
     controlPanel = new JPanel();
@@ -43,10 +49,13 @@ public class GuiController extends JFrame implements ActionListener {
     addButtonToControlPanel(addFoodButton, "Add Food");
     pauseButton = new JButton("pause");
     addButtonToControlPanel(pauseButton, "Pause");
+    
+    statusPanel = new StatusPanelView(fishController.getFishes());
 
     setLayout(new BorderLayout());
     add(aquariumPanel, BorderLayout.CENTER);
     add(controlPanel, BorderLayout.PAGE_END);
+    add(statusPanel, BorderLayout.PAGE_START);
 
     setVisible(true);
   }
@@ -60,7 +69,7 @@ public class GuiController extends JFrame implements ActionListener {
 
   public static void staticRepaint() {
     aquariumPanel.repaint();
-    controlPanel.repaint();
+    statusPanel.repaint();
   }
 
   @Override
