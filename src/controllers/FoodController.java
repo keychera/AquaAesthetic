@@ -37,8 +37,8 @@ public class FoodController implements SubController {
   }
 
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-		foods = null;
+	public void deleteSpecificEntity(int x, int y) {
+		Food food = new Food(x,y);
+		foods.remove(food);
 	}
 }

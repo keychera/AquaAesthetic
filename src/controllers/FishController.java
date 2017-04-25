@@ -30,8 +30,8 @@ public class FishController implements SubController {
     fishes.add(f);
   }
 
-	@Override
-	public void destroy() {
-		fishes = null;
-	}
+  public void deleteSpecificEntity(int x, int y) {
+	  Fish f = new Fish(x, y);
+	  fishes.remove(f);
+  }
 }
