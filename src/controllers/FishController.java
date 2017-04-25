@@ -20,6 +20,7 @@ public class FishController implements ISubController {
     return fishes;
   }
 
+  @Override
   public void perform() {
     removeObsoleteFishes();
     for (Fish fish : fishes) {
