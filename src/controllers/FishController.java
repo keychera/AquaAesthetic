@@ -7,7 +7,7 @@ import java.util.Random;
 import models.Aquarium;
 import models.Fish;
 
-public class FishController implements SubController {
+public class FishController implements ISubController {
   private List<Fish> fishes;
   private List<Fish> toRemove;
   
@@ -21,6 +21,7 @@ public class FishController implements SubController {
   }
 
   public void perform() {
+    removeObsoleteFishes();
     for (Fish fish : fishes) {
       if (!fish.isDeadByStarvation()) {
         fish.move();
@@ -28,10 +29,9 @@ public class FishController implements SubController {
         toRemove.add(fish);
       }
     }
-    removeFishes();
   }
 
-  private void removeFishes() {
+  private void removeObsoleteFishes() {
     if (!toRemove.isEmpty()) {
       for(Fish fish : toRemove) {
         fishes.remove(fish);

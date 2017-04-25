@@ -39,7 +39,7 @@ public class MainController {
   }
 
   private void runGameLoop() {
-    List<SubController> subControllers = new ArrayList<SubController>();
+    List<ISubController> subControllers = new ArrayList<ISubController>();
     subControllers.add(fishController);
     subControllers.add(foodController);
     subControllers.add(interactionController);

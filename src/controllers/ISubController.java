@@ -1,5 +1,5 @@
 package controllers;
 
-public interface SubController {
+public interface ISubController {
   public void perform();
 }

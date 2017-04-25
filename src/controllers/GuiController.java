@@ -9,12 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import models.Aquarium;
 import views.AquariumView;
 
 public class GuiController extends JFrame implements ActionListener {
   // app dimension
-  private int appWidth = 400;
-  private int appHeight = 500;
+  private int appWidth;
+  private int appHeight;
   // app swing component
   private static JPanel aquariumPanel;
   private static JPanel controlPanel;
@@ -25,6 +26,8 @@ public class GuiController extends JFrame implements ActionListener {
   private FoodController foodController;
 
   public GuiController(FishController fishController, FoodController foodController) {
+    appWidth = Aquarium.WIDTH;
+    appHeight = Aquarium.HEIGHT + 100;
     setSize(appWidth, appHeight);
     setResizable(false);
     setDefaultCloseOperation(EXIT_ON_CLOSE);

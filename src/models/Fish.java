@@ -25,7 +25,6 @@ public class Fish extends MovingObject {
       setTarget(targetFood);
       moveDirection(distancePerStep,
           (float) Math.atan2(currentTargetY - this.y, currentTargetX - this.x));
-      distancePerStep *= 1.001;
     } else {
       if (isTimeToDecideYet()) {
         Random rand = new Random();
@@ -50,7 +49,7 @@ public class Fish extends MovingObject {
     this.currentTargetY = y;
   }
 
-  private boolean isHungry() {
+  public boolean isHungry() {
     return hunger > 500;
   }
 
@@ -78,5 +77,9 @@ public class Fish extends MovingObject {
 
   public void setTargetFood(Food targetFood) {
     this.targetFood = targetFood;
+  }
+
+  public void hasEaten() {
+    this.hunger = 0;
   }
 }

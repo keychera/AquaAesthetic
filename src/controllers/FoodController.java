@@ -5,13 +5,16 @@ import java.util.List;
 import java.util.Random;
 
 import models.Aquarium;
+import models.Fish;
 import models.Food;
 
-public class FoodController implements SubController {
+public class FoodController implements ISubController {
   private List<Food> foods;
+  private List<Food> toRemove;
   
   public FoodController() {
     foods = new ArrayList<>();
+    toRemove = new ArrayList<>();
   }
 
   public List<Food> getFoods() {
@@ -20,10 +23,28 @@ public class FoodController implements SubController {
 
   @Override
   public void perform() {
+    removeObsoleteFoods();
     for(Food food : foods) {
-      food.move();
-      //TODO remove the food if it reach the bottom
+      if (!(food.getY() > Aquarium.HEIGHT + 50)) {
+        food.move();
+      } else {
+        toRemove.add(food);
+      }
     }
+  }
+
+  private void removeObsoleteFoods() {
+    for(Food food : foods) {
+      if (food.isOnRemoval()) {
+        toRemove.add(food);
+      }
+    }
+    if (!toRemove.isEmpty()) {
+      for(Food food : toRemove) {
+        foods.remove(food);
+      }
+    }
+    toRemove.clear();
   }
 
   public void addNewEntity() {

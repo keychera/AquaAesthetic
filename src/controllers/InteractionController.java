@@ -6,7 +6,7 @@ import models.Fish;
 import models.Food;
 import models.MovingObject;
 
-public class InteractionController implements SubController {
+public class InteractionController implements ISubController {
   private List<Fish> fishes;
   private List<Food> foods;
 
@@ -19,6 +19,14 @@ public class InteractionController implements SubController {
   public void perform() {
     for (Fish fish : fishes) {
       fish.setTargetFood(GetClosestFoodFrom(fish));
+      for (Food food : foods) {
+        boolean eatingStatus = (MovingObject.calcDistBetween(fish, food) < 10);
+        if (eatingStatus && fish.isHungry()) {
+          fish.hasEaten();
+          food.hasBeenEaten();
+          break;
+        }
+      }
     }
   }
 

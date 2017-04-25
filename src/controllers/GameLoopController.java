@@ -7,11 +7,11 @@ import javax.swing.SwingWorker;
 
 public class GameLoopController extends SwingWorker<String, Boolean> {
   private static final long FRAMEDELAY = 25;
-  private List<SubController> subControllers;
+  private List<ISubController> subControllers;
   private static boolean isAppRunning;
   private static boolean isAppPaused;
   
-  public GameLoopController(List<SubController> subControllers) {
+  public GameLoopController(List<ISubController> subControllers) {
     isAppRunning = true;
     isAppPaused = false;
     this.subControllers = subControllers;
@@ -30,7 +30,7 @@ public class GameLoopController extends SwingWorker<String, Boolean> {
     while (isAppRunning) {
       if (!isAppPaused) {
         Thread.sleep(FRAMEDELAY);
-        for (SubController subController : subControllers) {
+        for (ISubController subController : subControllers) {
           subController.perform();
         }
         publish(true);
