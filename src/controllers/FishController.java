@@ -29,4 +29,10 @@ public class FishController implements SubController {
     Fish f = new Fish(x, y);
     fishes.add(f);
   }
+
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		fishes = null;
+	}
 }

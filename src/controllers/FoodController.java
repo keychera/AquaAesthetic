@@ -35,4 +35,10 @@ public class FoodController implements SubController {
     foods.add(newFood);
     
   }
+
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		foods = null;
+	}
 }
