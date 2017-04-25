@@ -57,6 +57,7 @@ public class GuiController extends JFrame implements ActionListener {
 
   public static void staticRepaint() {
     aquariumPanel.repaint();
+    controlPanel.repaint();
   }
 
   @Override
@@ -70,11 +71,11 @@ public class GuiController extends JFrame implements ActionListener {
       }
     } else if (e.getActionCommand() == "add fish") {
       if (!GameLoopController.isAppPaused()) {
-        fishController.addNewEntity(aquariumPanel.getWidth(), aquariumPanel.getHeight());
+        fishController.addNewEntity();
       }
     } else if (e.getActionCommand() == "add food") {
       if (!GameLoopController.isAppPaused()) {
-        foodController.addNewEntity(aquariumPanel.getWidth(), aquariumPanel.getHeight());
+        foodController.addNewEntity();
       }
     }
   }

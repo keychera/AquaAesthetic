@@ -7,12 +7,11 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import models.Aquarium;
 import models.Fish;
 import models.Food;
 
 public class AquariumView extends JPanel {
-  public static final int VIEWWIDTH = 400;
-  public static final int VIEWHEIGHT = 400;
   private List<Fish> fishes;
   private List<Food> foods;
 
@@ -20,7 +19,7 @@ public class AquariumView extends JPanel {
     this.fishes = fishes;
     this.foods = foods;
     setBackground(Color.DARK_GRAY);
-    setPreferredSize(new Dimension(VIEWWIDTH, VIEWHEIGHT));
+    setPreferredSize(new Dimension(Aquarium.WIDTH, Aquarium.HEIGHT));
   }
 
   @Override

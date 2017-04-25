@@ -41,11 +41,11 @@ public class Fish extends MovingObject {
     increaseHunger(distancePerStep);
   }
 
-  public void setTarget(MovingObject mo) {
+  private void setTarget(MovingObject mo) {
     setTarget(mo.x, mo.y);
   }
 
-  public void setTarget(int x, int y) {
+  private void setTarget(int x, int y) {
     this.currentTargetX = x;
     this.currentTargetY = y;
   }
@@ -74,5 +74,9 @@ public class Fish extends MovingObject {
   
   public int getHunger() {
     return hunger;
+  }
+
+  public void setTargetFood(Food targetFood) {
+    this.targetFood = targetFood;
   }
 }

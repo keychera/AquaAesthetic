@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import models.Aquarium;
 import models.Food;
 
 public class FoodController implements SubController {
@@ -24,18 +25,11 @@ public class FoodController implements SubController {
       //TODO remove the food if it reach the bottom
     }
   }
-  
-  @Override
-  public void addNewEntity() {
-    Food newFood = new Food(50,-5);
-    foods.add(newFood);
-  }
 
-  @Override
-  public void addNewEntity(int aquariumWidth, int aquariumHeight) {
+  public void addNewEntity() {
     Random random = new Random();
-    int bound = aquariumWidth / 10;
-    int randX = bound + random.nextInt(aquariumWidth - (2 * bound));
+    int bound = Aquarium.WIDTH / 10;
+    int randX = bound + random.nextInt(Aquarium.WIDTH - (2 * bound));
     int y = -5;
     Food newFood = new Food(randX,y);
     foods.add(newFood);

@@ -11,8 +11,9 @@ import javax.swing.SwingUtilities;
 
 public class MainController {
   // controller to control
-  private FishController fishController;
-  private FoodController foodController;
+  private static FishController fishController;
+  private static FoodController foodController;
+  private static InteractionController interactionController;
   private static GameLoopController gameLoopController;
 
   public MainController() {
@@ -24,8 +25,8 @@ public class MainController {
   private void initializeControllers() {
     fishController = new FishController();
     fishController.addNewEntity();
-
     foodController = new FoodController();
+    interactionController = new InteractionController(fishController,foodController);
   }
 
   private void initializeGui() {
@@ -41,6 +42,7 @@ public class MainController {
     List<SubController> subControllers = new ArrayList<SubController>();
     subControllers.add(fishController);
     subControllers.add(foodController);
+    subControllers.add(interactionController);
     gameLoopController = new GameLoopController(subControllers);
     gameLoopController.execute();
   }
