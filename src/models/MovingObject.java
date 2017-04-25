@@ -1,0 +1,58 @@
+package models;
+
+public abstract class MovingObject {
+  protected final static int STANDARDDISTANCEPERSTEP = 10;
+  protected int x;
+  protected int y;
+  private float realX;
+  private float realY;
+
+  public int getX() {
+    return x;
+  }
+
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  public int getY() {
+    return y;
+  }
+
+  public void setY(int y) {
+    this.y = y;
+  }
+
+  public MovingObject() {
+    this(0, 0);
+  }
+
+  public MovingObject(float x, float y) {
+    realX = x;
+    realY = y;
+    determinePosition();
+  }
+
+  abstract public void move();
+
+  public void moveDirection(float distance, float angle) {
+    realX += distance * Math.cos(angle);
+    realY += distance * Math.sin(angle);
+    determinePosition();
+  }
+
+  public void moveTowards(float toX, float toY, float desiredStepTaken) {
+    realX += (toX - this.realX) / desiredStepTaken;
+    realY += (toY - this.realY) / desiredStepTaken;
+    determinePosition();
+  }
+
+  private void determinePosition() {
+    x = Math.round(realX);
+    y = Math.round(realY);
+  }
+
+  public static Float calcDistBetween(MovingObject o1, MovingObject o2) {
+    return (float) Math.sqrt(Math.pow(o1.realX - o2.realX, 2) + Math.pow(o1.realY - o2.realY, 2));
+  }
+}

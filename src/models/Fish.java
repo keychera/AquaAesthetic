@@ -1,64 +1,85 @@
 package models;
 
-import java.awt.Color;
+import java.util.Random;
 
-public class Fish {
-	
-	private int x,y;
-	private Color colors;
-	
-	public Fish(int x, int y, Color colors){
-		this.x = x;
-		this.y = y;
-		this.colors = colors;
-	};
-	
-	public int getX(){
-		return this.x;
-	};
-	
-	public int getY(){
-		return this.y;
-	};
-	
-	public Color getColors(){
-		return this.colors;
-	};
-	
-	public void setX(int x1){
-		this.x = x1;
-	};
-	
-	public void setY(int y1){
-		this.y = y1;
-	};
-	
-	public void setColors(Color colors1){
-		this.colors = colors1;
-	};
-	public void move(int distance, String direction){
-		switch (direction) {
-        case "north":  		this.y-=distance;
-                 break;
-        case "north east":  this.y-=distance; 
-        					this.x+=distance;
-        		break;
-        case "east":  		this.x+=distance;
-        		break;
-        case "south east":  this.x+=distance;
-        					this.y+=distance;
-        		break;
-        case "south":  		this.y+=distance;
-        		break;
-        case "south west":  this.x-=distance;
-        					this.y+=distance;
-        		break;
-        case "west":  		this.x-=distance;
-        		break;
-        case "north west":  this.x-=distance;
-        					this.y-=distance;
-        break;
-		}
-	};
+public class Fish extends MovingObject {
+  private float distancePerStep = 2;
+  private int nextDecisionTimer;
+  private int currentTargetX;
+  private int currentTargetY;
+  private Food targetFood;
+  private int hunger;
 
+  public Fish() {
+    this(0, 0);
+  }
+
+  public Fish(int x, int y) {
+    super(x, y);
+    nextDecisionTimer = -1;
+    hunger = -99;
+  }
+
+  public void move() {
+    if (isHungry() && targetFood != null) {
+      setTarget(targetFood);
+      moveDirection(distancePerStep,
+          (float) Math.atan2(currentTargetY - this.y, currentTargetX - this.x));
+    } else {
+      if (isTimeToDecideYet()) {
+        Random rand = new Random();
+        nextDecisionTimer = rand.nextInt(30) + 15;
+        setTarget(rand.nextInt(Aquarium.WIDTH), rand.nextInt(Aquarium.HEIGHT));
+        distancePerStep = rand.nextInt(10) + 1;
+      } else {
+        moveDirection(distancePerStep,
+            (float) Math.atan2(currentTargetY - this.y, currentTargetX - this.x));
+        nextDecisionTimer--;
+      }
+    }
+    increaseHunger(distancePerStep);
+  }
+
+  private void setTarget(MovingObject mo) {
+    setTarget(mo.x, mo.y);
+  }
+
+  private void setTarget(int x, int y) {
+    this.currentTargetX = x;
+    this.currentTargetY = y;
+  }
+
+  public boolean isHungry() {
+    return hunger > 500;
+  }
+
+  public boolean isDeadByStarvation() {
+    return hunger > 1000;
+  }
+
+  private void increaseHunger(float distanceTaken) {
+    this.hunger += distancePerStep;
+  }
+
+  private boolean isTimeToDecideYet() {
+    return (nextDecisionTimer < 0 || isNearTargetYet());
+  }
+
+  private boolean isNearTargetYet() {
+    int dx = Math.abs(currentTargetX - this.x);
+    int dy = Math.abs(currentTargetY - this.y);
+    return (dx < 10 && dy < 10);
+  }
+  
+  public int getHunger() {
+    return hunger;
+  }
+
+  public void setTargetFood(Food targetFood) {
+    this.targetFood = targetFood;
+  }
+
+  public void hasEaten() {
+    this.hunger = 0;
+  }
 }
