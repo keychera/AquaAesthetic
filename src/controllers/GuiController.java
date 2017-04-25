@@ -1,6 +1,6 @@
 package controllers;
 
-//TODO remove this ugliness
+// TODO remove this ugliness
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,21 +26,17 @@ public class GuiController extends JFrame implements ActionListener {
   private JButton pauseButton;
   private JButton addFoodButton;
   private JLabel moneyLabel;
-  private FishController fishController;
-  private FoodController foodController;
-  
+  private GameRuleController gameRuleController;
 
-  public GuiController(FishController fishController, FoodController foodController) {
+  public GuiController(GameRuleController gameRuleController) {
     appWidth = Aquarium.WIDTH;
     appHeight = Aquarium.HEIGHT + 100;
     setSize(appWidth, appHeight);
     setResizable(false);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-    this.fishController = fishController;
-    this.foodController = foodController;
-    
-    aquariumPanel = new AquariumView(fishController.getFishes(), foodController.getFoods());
+    this.gameRuleController = gameRuleController;
+    aquariumPanel = new AquariumView(gameRuleController.getFishes(), gameRuleController.getFoods());
 
     controlPanel = new JPanel();
     addFishButton = new JButton("add fish");
@@ -49,8 +45,8 @@ public class GuiController extends JFrame implements ActionListener {
     addButtonToControlPanel(addFoodButton, "Add Food");
     pauseButton = new JButton("pause");
     addButtonToControlPanel(pauseButton, "Pause");
-    
-    statusPanel = new StatusPanelView(fishController.getFishes());
+
+    statusPanel = new StatusPanelView(gameRuleController.getFishes());
 
     setLayout(new BorderLayout());
     add(aquariumPanel, BorderLayout.CENTER);
@@ -83,11 +79,11 @@ public class GuiController extends JFrame implements ActionListener {
       }
     } else if (e.getActionCommand() == "add fish") {
       if (!GameLoopController.isAppPaused()) {
-        fishController.addNewEntity();
+        gameRuleController.handleAddFishCommand();
       }
     } else if (e.getActionCommand() == "add food") {
       if (!GameLoopController.isAppPaused()) {
-        foodController.addNewEntity();
+        gameRuleController.handleAddFoodCommand();
       }
     }
   }
