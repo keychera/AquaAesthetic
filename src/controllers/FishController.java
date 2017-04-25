@@ -32,7 +32,6 @@ public class FishController implements SubController {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 		fishes = null;
 	}
 }
