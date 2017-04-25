@@ -1,21 +1,15 @@
 package controllers;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
-import javax.swing.JButton;
-import views.AquariumView;
+
 
 public class MainController {
-
   // controller to control
   private FishController fishController;
   private FoodController foodController;
