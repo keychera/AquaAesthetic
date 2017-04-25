@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import models.Fish;
 
 public class FishController implements SubController {
@@ -20,18 +22,35 @@ public class FishController implements SubController {
       fish.move();
     }
   }
-
+  
+  @Override
   public void addNewEntity() {
-    addNewEntity(30, 30);
+    Fish newFish = new Fish(30, 30);
+    fishes.add(newFish);
   }
 
-  public void addNewEntity(int x, int y) {
-    Fish f = new Fish(x, y);
-    fishes.add(f);
+  @Override
+  public void addNewEntity(int aquariumWidth, int aquariumHeight) {
+    Random random = new Random();
+    int bound = aquariumWidth / 10;
+    int randX = bound + random.nextInt(aquariumWidth - (2 * bound));
+    int randY = bound + random.nextInt(aquariumHeight - (2 * bound));
+    Fish newFish = new Fish(randX, randY);
+    fishes.add(newFish);
   }
 
-  public void deleteSpecificEntity(int x, int y) {
-	  Fish f = new Fish(x, y);
+  public void deleteSpecificEntity(int aquariumWidth, int aquariumHeight) {
+	  Random random = new Random();  
+	  int bound = aquariumWidth / 10;
+	  int randX = bound + random.nextInt(aquariumWidth - (2 * bound));
+	  int randY = bound + random.nextInt(aquariumHeight - (2 * bound));
+	  Fish f = new Fish(randX, randY);
 	  fishes.remove(f);
+  }
+
+  @Override
+  public void deleteSpecificEntity() {
+	Fish newFish = new Fish();
+	fishes.remove(newFish);
   }
 }

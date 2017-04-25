@@ -13,12 +13,9 @@ import java.util.ArrayList;
 import models.Fish;
 
 public class Main {
+  private static MainController mainController;
+  
   public static void main(String[] args) {
-    //Initialize();
-    SwingUtilities.invokeLater(new Runnable() {
-      public void run() {
-        JFrame frame = new MainController();
-      }
-    });
+    mainController = new MainController();
   }
 }

@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import models.Food;
 
@@ -23,22 +24,36 @@ public class FoodController implements SubController {
       //TODO remove the food if it reach the bottom
     }
   }
-
+  
   @Override
   public void addNewEntity() {
-    addNewEntity(50,-10);
+    Food newFood = new Food(50,-5);
+    foods.add(newFood);
   }
 
   @Override
-  public void addNewEntity(int x, int y) {
-    Food newFood = new Food(x,y);
+  public void addNewEntity(int aquariumWidth, int aquariumHeight) {
+    Random random = new Random();
+    int bound = aquariumWidth / 10;
+    int randX = bound + random.nextInt(aquariumWidth - (2 * bound));
+    int y = -5;
+    Food newFood = new Food(randX,y);
     foods.add(newFood);
-    
   }
 
 	@Override
-	public void deleteSpecificEntity(int x, int y) {
-		Food food = new Food(x,y);
+	public void deleteSpecificEntity(int aquariumWidth, int aquariumHeight) {
+		Random random = new Random();
+		int bound =  aquariumWidth / 10;
+	    int randX = bound + random.nextInt(aquariumWidth - (2 * bound));
+	    int y = -5;
+		Food food = new Food(randX,y);
 		foods.remove(food);
+	}
+
+	@Override
+	public void deleteSpecificEntity() {
+		Food newFood = new Food(50,-5);
+		foods.remove(newFood);
 	}
 }
