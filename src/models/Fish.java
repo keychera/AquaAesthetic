@@ -9,6 +9,7 @@ public class Fish extends MovingObject {
   private int currentTargetY;
   private Food targetFood;
   private int hunger;
+  private int growth;
 
   public Fish() {
     this(0, 0);
@@ -17,7 +18,8 @@ public class Fish extends MovingObject {
   public Fish(int x, int y) {
     super(x, y);
     nextDecisionTimer = -1;
-    hunger = -99;
+    hunger = 0;
+    growth = 0;
   }
 
   public void move() {
@@ -74,6 +76,10 @@ public class Fish extends MovingObject {
   public int getHunger() {
     return hunger;
   }
+  
+  public int getGrowth() {
+    return growth;
+  }
 
   public void setTargetFood(Food targetFood) {
     this.targetFood = targetFood;
@@ -81,5 +87,6 @@ public class Fish extends MovingObject {
 
   public void hasEaten() {
     this.hunger = 0;
+    this.growth += 5;
   }
 }

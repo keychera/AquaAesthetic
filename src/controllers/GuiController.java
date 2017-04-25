@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import models.Aquarium;
@@ -23,9 +24,9 @@ public class GuiController extends JFrame implements ActionListener {
   private static JPanel controlPanel;
   private static JPanel statusPanel;
   private JButton addFishButton;
-  private JButton pauseButton;
   private JButton addFoodButton;
-  private JLabel moneyLabel;
+  private JButton sellFishButton;
+  private JButton pauseButton;
   private GameRuleController gameRuleController;
 
   public GuiController(GameRuleController gameRuleController) {
@@ -43,6 +44,8 @@ public class GuiController extends JFrame implements ActionListener {
     addButtonToControlPanel(addFishButton, "Add Fish");
     addFoodButton = new JButton("add food");
     addButtonToControlPanel(addFoodButton, "Add Food");
+    sellFishButton = new JButton("sell fish");
+    addButtonToControlPanel(sellFishButton, "Sell Fish");
     pauseButton = new JButton("pause");
     addButtonToControlPanel(pauseButton, "Pause");
 
@@ -77,6 +80,10 @@ public class GuiController extends JFrame implements ActionListener {
       } else {
         pauseButton.setText("pause");
       }
+    } else if (e.getActionCommand() == "sell fish") { 
+      GameLoopController.togglePause();
+      JOptionPane.showMessageDialog(this, "Selling fish is not implemented");
+      GameLoopController.togglePause();
     } else if (e.getActionCommand() == "add fish") {
       if (!GameLoopController.isAppPaused()) {
         gameRuleController.handleAddFishCommand();

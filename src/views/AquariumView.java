@@ -31,7 +31,7 @@ public class AquariumView extends JPanel {
     }
     for (Fish fish : fishes) {
       g.setColor(Color.WHITE);
-      g.fillOval(fish.getX(), fish.getY(), 20, 20);
+      g.fillOval(fish.getX(), fish.getY(), 20 + fish.getGrowth(), 20 + fish.getGrowth());
     }
   }
 }
