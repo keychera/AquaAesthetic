@@ -45,16 +45,7 @@ public class AquariumView extends JPanel {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.drawImage(imgBG, 0, 0, null);
-    
-//    for (Food food : foods) {
-//      g.setColor(Color.WHITE);
-//      g.fillRect(food.getX(), food.getY(), 5, 5);
-//    }
-//    for (Fish fish : fishes) {
-//      g.setColor(Color.WHITE);
-//      g.fillOval(fish.getX(), fish.getY(), 20, 20);
-//    }
-    
+        
     arrayG = new ArrayList<Graphics2D>();
     for (int i=0; i<foods.size(); i++) {
     	arrayG.add((Graphics2D) g);
