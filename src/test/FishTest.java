@@ -13,7 +13,7 @@ public class FishTest {
 	@Test
 	public void testFish() {
 		assertFalse(goldfish.isHungry());
-		assertEquals(-99, goldfish.getHunger());
+		assertEquals(0, goldfish.getHunger());
 	}
 
 	
