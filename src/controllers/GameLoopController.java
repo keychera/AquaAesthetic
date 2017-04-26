@@ -52,7 +52,6 @@ public class GameLoopController extends SwingWorker<String, Boolean> {
 
   @Override
   protected void done() {
-    //TODO this block is to catch exception, remove this when is not needed anymore
     try {
       System.out.println(get());
     } catch (InterruptedException | ExecutionException e) {

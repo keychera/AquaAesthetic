@@ -18,7 +18,7 @@ public class AquariumView extends JPanel {
   public AquariumView(List<Fish> fishes, List<Food> foods) {
     this.fishes = fishes;
     this.foods = foods;
-    setBackground(Color.DARK_GRAY);
+    setBackground(Color.MAGENTA);
     setPreferredSize(new Dimension(Aquarium.WIDTH, Aquarium.HEIGHT));
   }
 
