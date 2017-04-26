@@ -2,20 +2,22 @@ package test;
 
 import static org.junit.Assert.*;
 
+import controllers.InteractionController;
+import controllers.FishController;
+import controllers.FoodController;
+
 import org.junit.Test;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class InteractionControllerTest.
- */
 public class InteractionControllerTest {
 
-	/**
-	 * Test get closest food.
-	 */
 	@Test
-	public void testGetClosestFood() {
-		fail("Not yet implemented");
+	public void test() {
+		FishController fish = new FishController();
+		FoodController food = new FoodController();
+		
+		InteractionController ic = new InteractionController(fish, food);
+		ic.perform();
+		
 	}
 
 }
