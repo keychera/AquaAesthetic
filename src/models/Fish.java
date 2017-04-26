@@ -10,6 +10,7 @@ public class Fish extends MovingObject {
   private Food targetFood;
   private int hunger;
   private int growth;
+  private boolean removeFlag;
 
   public Fish() {
     this(0, 0);
@@ -20,6 +21,7 @@ public class Fish extends MovingObject {
     nextDecisionTimer = -1;
     hunger = 0;
     growth = 0;
+    removeFlag = false;
   }
 
   public void move() {
@@ -27,12 +29,13 @@ public class Fish extends MovingObject {
       setTarget(targetFood);
       moveDirection(distancePerStep,
           (float) Math.atan2(currentTargetY - this.y, currentTargetX - this.x));
+      distancePerStep *= 1.001;
     } else {
       if (isTimeToDecideYet()) {
         Random rand = new Random();
         nextDecisionTimer = rand.nextInt(30) + 15;
         setTarget(rand.nextInt(Aquarium.WIDTH), rand.nextInt(Aquarium.HEIGHT));
-        distancePerStep = rand.nextInt(10) + 1;
+        distancePerStep = rand.nextInt(5) + STANDARDDISTANCEPERSTEP/2;
       } else {
         moveDirection(distancePerStep,
             (float) Math.atan2(currentTargetY - this.y, currentTargetX - this.x));
@@ -88,5 +91,17 @@ public class Fish extends MovingObject {
   public void hasEaten() {
     this.hunger = 0;
     this.growth += 5;
+  }
+
+  public boolean isOnRemoval() {
+    return removeFlag;
+  }
+
+  public void hasBeenSold() {
+    removeFlag = true;
+  }
+
+  public int value() {
+    return growth * 20;
   }
 }

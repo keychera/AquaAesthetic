@@ -19,7 +19,7 @@ public class GameRuleController implements ISubController {
 
   @Override
   public void perform() {
-    Aquarium.money++;
+    //Aquarium.money++;
   }
 
   public void handleAddFishCommand() {
@@ -35,6 +35,13 @@ public class GameRuleController implements ISubController {
       Aquarium.money -= FOODPRICE;
     }
   }
+  
+  public void handleSellFishCommand(List<Fish> toSell) {
+    for(Fish fish : toSell) {
+      fish.hasBeenSold();
+      Aquarium.money += fish.value();
+    }
+  }
 
   // TODO these below, along with the whole design of GuiController seems like a bad choice
   public List<Fish> getFishes() {
@@ -42,8 +49,6 @@ public class GameRuleController implements ISubController {
   }
 
   public List<Food> getFoods() {
-    // TODO Auto-generated method stub
     return foodController.getFoods();
   }
-
 }

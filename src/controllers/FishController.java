@@ -6,6 +6,7 @@ import java.util.Random;
 
 import models.Aquarium;
 import models.Fish;
+import models.Food;
 
 public class FishController implements ISubController {
   private List<Fish> fishes;
@@ -33,6 +34,11 @@ public class FishController implements ISubController {
   }
 
   private void removeObsoleteFishes() {
+    for (Fish fish : fishes) {
+      if (fish.isOnRemoval()) {
+        toRemove.add(fish);
+      }
+    }
     if (!toRemove.isEmpty()) {
       for (Fish fish : toRemove) {
         fishes.remove(fish);

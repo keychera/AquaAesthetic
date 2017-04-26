@@ -4,6 +4,7 @@ package controllers;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -12,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import models.Aquarium;
+import models.Fish;
 import views.AquariumView;
 import views.StatusPanelView;
 
@@ -28,19 +30,45 @@ public class GuiController extends JFrame implements ActionListener {
   private JButton sellFishButton;
   private JButton pauseButton;
   private SellDialog sellDialog;
-  private JPanel sellPanel;
   private GameRuleController gameRuleController;
-  
-  private class SellDialog extends JDialog implements ActionListener{
+
+  private class SellDialog extends JDialog implements ActionListener {
     public SellDialog(JFrame frame, String string, boolean b) {
-      super(frame,string,b);
+      super(frame, string, b);
+      setResizable(false);
+      getContentPane().add(createRootPane());
+      setVisible(false);
+      setLocation(this.getParent().getWidth() / 3, this.getParent().getHeight() / 5);
+    }
+
+    public void invoke() {
+      JPanel sellPanel = new JPanel();
+      sellPanel.setLayout(new BorderLayout());
+      sellPanel.add(new JLabel("All fishes has been sold"), BorderLayout.CENTER);
+
+      JButton finishButton = new JButton("Okay");
+      finishButton.addActionListener(sellDialog);
+      sellPanel.add(finishButton, BorderLayout.PAGE_END);
+      sellDialog.getContentPane().add(sellPanel);
+      sellDialog.setSize(this.getParent().getWidth() / 2, this.getParent().getHeight() / 6);
+      sellDialog.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      dispose();      
+      calculateReturnMessage();
+      sellDialog.setVisible(false);
     }
-    
+
+    private void calculateReturnMessage() {
+
+    }
+
+    public List<Fish> getReturnMessage() {
+      return gameRuleController.getFishes();
+      
+    }
+
   }
 
   public GuiController(GameRuleController gameRuleController) {
@@ -64,13 +92,8 @@ public class GuiController extends JFrame implements ActionListener {
     addButtonToControlPanel(pauseButton, "Pause");
 
     statusPanel = new StatusPanelView(gameRuleController.getFishes());
-    
+
     sellDialog = new SellDialog(this, "Sell", true);
-    sellDialog.setResizable(false);
-    sellDialog.getContentPane().add(createRootPane());
-    sellDialog.setVisible(false);
-    sellDialog.setLocation(this.getWidth()/3, this.getHeight()/5);
-    
 
     setLayout(new BorderLayout());
     add(aquariumPanel, BorderLayout.CENTER);
@@ -103,15 +126,10 @@ public class GuiController extends JFrame implements ActionListener {
       }
     } else if (e.getActionCommand() == "sell fish") {
       GameLoopController.togglePause();
-      sellPanel = new JPanel();
-      sellPanel.setLayout(new BorderLayout());
-      sellPanel.add(new JLabel("hey"), BorderLayout.CENTER);
-      JButton finishButton = new JButton("hey");
-      finishButton.addActionListener(sellDialog);
-      sellPanel.add(finishButton, BorderLayout.PAGE_END);
-      sellDialog.getContentPane().add(sellPanel);
-      sellDialog.setSize(this.getWidth()/3, this.getHeight()/6);
-      sellDialog.setVisible(true);
+
+      sellDialog.invoke();
+      gameRuleController.handleSellFishCommand(sellDialog.getReturnMessage());
+
       GameLoopController.togglePause();
     } else if (e.getActionCommand() == "add fish") {
       if (!GameLoopController.isAppPaused()) {
