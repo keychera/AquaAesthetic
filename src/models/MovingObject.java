@@ -51,4 +51,8 @@ public abstract class MovingObject {
     x = Math.round(realX);
     y = Math.round(realY);
   }
+
+  public static Float calcDistBetween(MovingObject o1, MovingObject o2) {
+    return (float) Math.sqrt(Math.pow(o1.realX - o2.realX, 2) + Math.pow(o1.realY - o2.realY, 2));
+  }
 }

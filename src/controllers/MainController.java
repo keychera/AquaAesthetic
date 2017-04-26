@@ -1,24 +1,19 @@
 package controllers;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
-import javax.swing.JButton;
-import views.AquariumView;
+
 
 public class MainController {
-
   // controller to control
-  private FishController fishController;
-  private FoodController foodController;
+  private static FishController fishController;
+  private static FoodController foodController;
+  private static InteractionController interactionController;
   private static GameLoopController gameLoopController;
 
   public MainController() {
@@ -30,8 +25,8 @@ public class MainController {
   private void initializeControllers() {
     fishController = new FishController();
     fishController.addNewEntity();
-
     foodController = new FoodController();
+    interactionController = new InteractionController(fishController,foodController);
   }
 
   private void initializeGui() {
@@ -44,9 +39,10 @@ public class MainController {
   }
 
   private void runGameLoop() {
-    List<SubController> subControllers = new ArrayList<SubController>();
+    List<ISubController> subControllers = new ArrayList<ISubController>();
     subControllers.add(fishController);
     subControllers.add(foodController);
+    subControllers.add(interactionController);
     gameLoopController = new GameLoopController(subControllers);
     gameLoopController.execute();
   }

@@ -4,53 +4,54 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import models.Aquarium;
 import models.Fish;
 
-public class FishController implements SubController {
+public class FishController implements ISubController {
   private List<Fish> fishes;
+  private List<Fish> toRemove;
   
   public FishController() {
-    fishes = new ArrayList<>();
+    fishes = new ArrayList<Fish>();
+    toRemove = new ArrayList<Fish>();
   }
 
   public List<Fish> getFishes() {
     return fishes;
   }
 
+  @Override
   public void perform() {
+    removeObsoleteFishes();
     for (Fish fish : fishes) {
-      fish.move();
+      if (!fish.isDeadByStarvation()) {
+        fish.move();
+      } else {
+        toRemove.add(fish);
+      }
     }
   }
-  
-  @Override
-  public void addNewEntity() {
-    Fish newFish = new Fish(30, 30);
-    fishes.add(newFish);
+
+
+  private void removeObsoleteFishes() {
+    if (!toRemove.isEmpty()) {
+      for(Fish fish : toRemove) {
+        fishes.remove(fish);
+      }
+    }
+    toRemove.clear();
   }
 
-  @Override
-  public void addNewEntity(int aquariumWidth, int aquariumHeight) {
+  public void addNewEntity() {
     Random random = new Random();
-    int bound = aquariumWidth / 10;
-    int randX = bound + random.nextInt(aquariumWidth - (2 * bound));
-    int randY = bound + random.nextInt(aquariumHeight - (2 * bound));
+    int bound = Aquarium.WIDTH / 10;
+    int randX = bound + random.nextInt(Aquarium.WIDTH - (2 * bound));
+    int randY = bound + random.nextInt(Aquarium.HEIGHT - (2 * bound));
     Fish newFish = new Fish(randX, randY);
     fishes.add(newFish);
   }
 
-  public void deleteSpecificEntity(int aquariumWidth, int aquariumHeight) {
-	  Random random = new Random();  
-	  int bound = aquariumWidth / 10;
-	  int randX = bound + random.nextInt(aquariumWidth - (2 * bound));
-	  int randY = bound + random.nextInt(aquariumHeight - (2 * bound));
-	  Fish f = new Fish(randX, randY);
-	  fishes.remove(f);
-  }
-
-  @Override
-  public void deleteSpecificEntity() {
-	Fish newFish = new Fish();
-	fishes.remove(newFish);
+  public int getNumberOfFish() {
+    return fishes.size();
   }
 }

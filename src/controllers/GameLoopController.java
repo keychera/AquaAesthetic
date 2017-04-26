@@ -1,16 +1,17 @@
 package controllers;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
-public class GameLoopController extends SwingWorker<Void, Boolean> {
+public class GameLoopController extends SwingWorker<String, Boolean> {
   private static final long FRAMEDELAY = 25;
-  private List<SubController> subControllers;
+  private List<ISubController> subControllers;
   private static boolean isAppRunning;
   private static boolean isAppPaused;
   
-  public GameLoopController(List<SubController> subControllers) {
+  public GameLoopController(List<ISubController> subControllers) {
     isAppRunning = true;
     isAppPaused = false;
     this.subControllers = subControllers;
@@ -25,11 +26,11 @@ public class GameLoopController extends SwingWorker<Void, Boolean> {
   }
 
   @Override
-  protected Void doInBackground() throws Exception {
+  protected String doInBackground() throws InterruptedException  {
     while (isAppRunning) {
       if (!isAppPaused) {
         Thread.sleep(FRAMEDELAY);
-        for (SubController subController : subControllers) {
+        for (ISubController subController : subControllers) {
           subController.perform();
         }
         publish(true);
@@ -37,7 +38,7 @@ public class GameLoopController extends SwingWorker<Void, Boolean> {
         publish(false);
       }
     }
-    return null;
+    return "yes";
   }
 
   @Override
@@ -46,6 +47,16 @@ public class GameLoopController extends SwingWorker<Void, Boolean> {
       if (isAquariumRunning) {
         GuiController.staticRepaint();
       }
+    }
+  }
+
+  @Override
+  protected void done() {
+    //TODO this block is to catch exception, remove this when is not needed anymore
+    try {
+      System.out.println(get());
+    } catch (InterruptedException | ExecutionException e) {
+      e.printStackTrace();
     }
   }
 }
