@@ -80,7 +80,7 @@ public class GuiController extends JFrame implements ActionListener {
       } else {
         pauseButton.setText("pause");
       }
-    } else if (e.getActionCommand() == "sell fish") { 
+    } else if (e.getActionCommand() == "sell fish") {
       GameLoopController.togglePause();
       JOptionPane.showMessageDialog(this, "Selling fish is not implemented");
       GameLoopController.togglePause();

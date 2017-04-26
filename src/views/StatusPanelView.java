@@ -23,7 +23,7 @@ public class StatusPanelView extends JPanel {
     fishNumberStatus = new JLabel(Integer.toString(fishes.size()));
     add(fishNumberStatus);
   }
-  
+
   @Override
   protected void paintComponent(Graphics g) {
     moneyStatus.setText(Integer.toString(Aquarium.money));

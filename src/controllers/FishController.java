@@ -10,7 +10,7 @@ import models.Fish;
 public class FishController implements ISubController {
   private List<Fish> fishes;
   private List<Fish> toRemove;
-  
+
   public FishController() {
     fishes = new ArrayList<Fish>();
     toRemove = new ArrayList<Fish>();
@@ -34,7 +34,7 @@ public class FishController implements ISubController {
 
   private void removeObsoleteFishes() {
     if (!toRemove.isEmpty()) {
-      for(Fish fish : toRemove) {
+      for (Fish fish : toRemove) {
         fishes.remove(fish);
       }
     }

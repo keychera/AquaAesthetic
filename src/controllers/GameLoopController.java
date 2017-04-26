@@ -10,23 +10,23 @@ public class GameLoopController extends SwingWorker<String, Boolean> {
   private List<ISubController> subControllers;
   private static boolean isAppRunning;
   private static boolean isAppPaused;
-  
+
   public GameLoopController(List<ISubController> subControllers) {
     isAppRunning = true;
     isAppPaused = false;
     this.subControllers = subControllers;
   }
-  
+
   public static boolean isAppPaused() {
     return isAppPaused;
   }
-  
+
   public static void togglePause() {
     isAppPaused = !isAppPaused;
   }
 
   @Override
-  protected String doInBackground() throws InterruptedException  {
+  protected String doInBackground() throws InterruptedException {
     while (isAppRunning) {
       if (!isAppPaused) {
         Thread.sleep(FRAMEDELAY);
@@ -52,7 +52,7 @@ public class GameLoopController extends SwingWorker<String, Boolean> {
 
   @Override
   protected void done() {
-    //TODO this block is to catch exception, remove this when is not needed anymore
+    // TODO this block is to catch exception, remove this when is not needed anymore
     try {
       System.out.println(get());
     } catch (InterruptedException | ExecutionException e) {

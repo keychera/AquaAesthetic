@@ -4,7 +4,6 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -27,12 +26,12 @@ public class MainController {
     fishController = new FishController();
     fishController.addNewEntity();
     foodController = new FoodController();
-    interactionController = new InteractionController(fishController,foodController);
-    gameRuleController = new GameRuleController(fishController,foodController);
+    interactionController = new InteractionController(fishController, foodController);
+    gameRuleController = new GameRuleController(fishController, foodController);
   }
 
   private void initializeGui() {
-  //Initialize();
+    // Initialize();
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {
         JFrame frame = new GuiController(gameRuleController);

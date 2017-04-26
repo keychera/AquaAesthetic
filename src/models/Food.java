@@ -4,11 +4,11 @@ public class Food extends MovingObject {
   private boolean removeFlag;
 
   public Food(int x, int y) {
-    super(x,y);
+    super(x, y);
     removeFlag = false;
   }
-  
-  public boolean isOnRemoval(){
+
+  public boolean isOnRemoval() {
     return removeFlag;
   }
 

@@ -72,11 +72,11 @@ public class Fish extends MovingObject {
     int dy = Math.abs(currentTargetY - this.y);
     return (dx < 10 && dy < 10);
   }
-  
+
   public int getHunger() {
     return hunger;
   }
-  
+
   public int getGrowth() {
     return growth;
   }
