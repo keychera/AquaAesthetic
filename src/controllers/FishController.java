@@ -7,27 +7,43 @@ import java.util.Random;
 import models.Aquarium;
 import models.Fish;
 
+// TODO: Auto-generated Javadoc
 /**
 * FishController class
 * managing fishes outside its behavior. 
 *
-* @author  Kevin Erdiza Yogatama
-* @version 1.0
-* @since   2017-04-26 
 */
 public class FishController implements ISubController {
+  
+  /** The fishes. */
   private List<Fish> fishes;
+  
+  /** The to remove. */
   private List<Fish> toRemove;
   
+  /**
+   * Instantiates a new fish controller.
+   */
   public FishController() {
     fishes = new ArrayList<Fish>();
     toRemove = new ArrayList<Fish>();
   }
 
+  /**
+   * Gets the fishes.
+   *
+   * @return the fishes
+   */
   public List<Fish> getFishes() {
     return fishes;
   }
 
+  /* (non-Javadoc)
+   * @see controllers.ISubController#perform()
+   */
+  /* implementing from ISubController interface method
+   * 
+   */
   @Override
   public void perform() {
     removeObsoleteFishes();
@@ -40,6 +56,9 @@ public class FishController implements ISubController {
     }
   }
 
+  /**
+   * Removes the obsolete fishes.
+   */
   private void removeObsoleteFishes() {
     if (!toRemove.isEmpty()) {
       for(Fish fish : toRemove) {
@@ -49,6 +68,9 @@ public class FishController implements ISubController {
     toRemove.clear();
   }
 
+  /**
+   * Adds the new entity.
+   */
   public void addNewEntity() {
     Random random = new Random();
     int bound = Aquarium.WIDTH / 10;
@@ -58,6 +80,11 @@ public class FishController implements ISubController {
     fishes.add(newFish);
   }
 
+  /**
+   * Gets the number of fish.
+   *
+   * @return the number of fish
+   */
   public int getNumberOfFish() {
     return fishes.size();
   }

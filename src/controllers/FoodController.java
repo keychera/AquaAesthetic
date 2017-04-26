@@ -8,19 +8,38 @@ import models.Aquarium;
 import models.Fish;
 import models.Food;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FoodController.
+ */
 public class FoodController implements ISubController {
+  
+  /** The foods. */
   private List<Food> foods;
+  
+  /** The to remove. */
   private List<Food> toRemove;
   
+  /**
+   * Instantiates a new food controller.
+   */
   public FoodController() {
     foods = new ArrayList<>();
     toRemove = new ArrayList<>();
   }
 
+  /**
+   * Gets the foods.
+   *
+   * @return the foods
+   */
   public List<Food> getFoods() {
     return foods;
   }
 
+  /* (non-Javadoc)
+   * @see controllers.ISubController#perform()
+   */
   @Override
   public void perform() {
     removeObsoleteFoods();
@@ -33,6 +52,9 @@ public class FoodController implements ISubController {
     }
   }
 
+  /**
+   * Removes the obsolete foods.
+   */
   private void removeObsoleteFoods() {
     for(Food food : foods) {
       if (food.isOnRemoval()) {
@@ -47,6 +69,9 @@ public class FoodController implements ISubController {
     toRemove.clear();
   }
 
+  /**
+   * Adds the new entity.
+   */
   public void addNewEntity() {
     Random random = new Random();
     int bound = Aquarium.WIDTH / 10;

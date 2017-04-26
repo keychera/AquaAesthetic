@@ -5,26 +5,54 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GameLoopController.
+ */
 public class GameLoopController extends SwingWorker<String, Boolean> {
+  
+  /** The Constant FRAMEDELAY. */
   private static final long FRAMEDELAY = 25;
+  
+  /** The sub controllers. */
   private List<ISubController> subControllers;
+  
+  /** The is app running. */
   private static boolean isAppRunning;
+  
+  /** The is app paused. */
   private static boolean isAppPaused;
   
+  /**
+   * Instantiates a new game loop controller.
+   *
+   * @param subControllers the sub controllers
+   */
   public GameLoopController(List<ISubController> subControllers) {
     isAppRunning = true;
     isAppPaused = false;
     this.subControllers = subControllers;
   }
   
+  /**
+   * Checks if is app paused.
+   *
+   * @return true, if is app paused
+   */
   public static boolean isAppPaused() {
     return isAppPaused;
   }
   
+  /**
+   * Toggle pause.
+   */
   public static void togglePause() {
     isAppPaused = !isAppPaused;
   }
 
+  /* method for running in background
+   * @return String for indicating background running
+   */
   @Override
   protected String doInBackground() throws InterruptedException  {
     while (isAppRunning) {
@@ -41,6 +69,9 @@ public class GameLoopController extends SwingWorker<String, Boolean> {
     return "yes";
   }
 
+  /* process when running the aquarium
+   * @param calculatedChanges list of changes in Aquarium
+   */
   @Override
   protected void process(List<Boolean> calculatedChanges) {
     for (Boolean isAquariumRunning : calculatedChanges) {
@@ -50,6 +81,9 @@ public class GameLoopController extends SwingWorker<String, Boolean> {
     }
   }
 
+  /* error handling for process
+   * 
+   */
   @Override
   protected void done() {
     try {

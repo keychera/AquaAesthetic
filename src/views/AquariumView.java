@@ -17,14 +17,36 @@ import models.Aquarium;
 import models.Fish;
 import models.Food;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AquariumView.
+ */
 public class AquariumView extends JPanel {
+  
+  /** The fishes. */
   private List<Fish> fishes;
+  
+  /** The foods. */
   private List<Food> foods;
+  
+  /** The array G. */
   private ArrayList<Graphics2D> arrayG;
+  
+  /** The img BG. */
   private BufferedImage imgBG = null;
+  
+  /** The img food. */
   private BufferedImage imgFood = null;
+  
+  /** The img fish. */
   private BufferedImage imgFish = null;
 
+  /**
+   * Instantiates a new aquarium view.
+   *
+   * @param fishes the fishes
+   * @param foods the foods
+   */
   public AquariumView(List<Fish> fishes, List<Food> foods) {
     this.fishes = fishes;
     this.foods = foods;
@@ -40,6 +62,9 @@ public class AquariumView extends JPanel {
     setPreferredSize(new Dimension(Aquarium.WIDTH, Aquarium.HEIGHT));
   }
 
+  /* drawing Graph components
+   * @param g Graphics object 
+   */
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
