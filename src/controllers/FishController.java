@@ -7,6 +7,14 @@ import java.util.Random;
 import models.Aquarium;
 import models.Fish;
 
+/**
+* FishController class
+* managing fishes outside its behavior. 
+*
+* @author  Kevin Erdiza Yogatama
+* @version 1.0
+* @since   2017-04-26 
+*/
 public class FishController implements ISubController {
   private List<Fish> fishes;
   private List<Fish> toRemove;
