@@ -30,6 +30,7 @@ public class AquariumView extends JPanel {
     this.foods = foods;
     
     try {
+        //TODO make the filepath relative to project path, not absolute like this
     	imgBG = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/aesthetic_background.jpeg"));
 	    imgFood = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/1.png"));
 	    imgFish = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/2.png"));
@@ -60,10 +61,9 @@ public class AquariumView extends JPanel {
     	arrayG.add((Graphics2D) g);
     	arrayG.get(i).drawImage(imgFood, foods.get(i).getX(), foods.get(i).getY(), null);
     }
-    arrayG = new ArrayList<Graphics2D>();
-    for (int i=0; i<fishes.size(); i++) {
-    	arrayG.add((Graphics2D) g);
-    	arrayG.get(i).drawImage(imgFish, fishes.get(i).getX(), fishes.get(i).getY(), null);
+    for (Fish fish : fishes) {
+      g.setColor(Color.WHITE);
+      g.fillOval(fish.getX(), fish.getY(), 20 + fish.getGrowth(), 20 + fish.getGrowth());
     }
   }
 }
