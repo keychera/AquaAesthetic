@@ -7,10 +7,10 @@ import controllers.MainController;
  * The Class Main.
  */
 public class Main {
-  
+
   /** The main controller. */
   private static MainController mainController;
-  
+
   /**
    * The main method.
    *

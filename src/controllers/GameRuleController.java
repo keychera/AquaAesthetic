@@ -11,16 +11,16 @@ import models.Food;
  * The Class GameRuleController.
  */
 public class GameRuleController implements ISubController {
-  
+
   /** The Constant FISHPRICE. */
   private static final int FISHPRICE = 200;
-  
+
   /** The Constant FOODPRICE. */
   private static final int FOODPRICE = 20;
-  
+
   /** The fish controller. */
   FishController fishController;
-  
+
   /** The food controller. */
   FoodController foodController;
 
@@ -35,12 +35,14 @@ public class GameRuleController implements ISubController {
     this.foodController = foodController;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see controllers.ISubController#perform()
    */
   @Override
   public void perform() {
-    //Aquarium.money++;
+    // Aquarium.money++;
   }
 
   /**
@@ -62,9 +64,9 @@ public class GameRuleController implements ISubController {
       Aquarium.money -= FOODPRICE;
     }
   }
-  
+
   public void handleSellFishCommand(List<Fish> toSell) {
-    for(Fish fish : toSell) {
+    for (Fish fish : toSell) {
       fish.hasBeenSold();
       Aquarium.money += fish.value();
     }

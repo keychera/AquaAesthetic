@@ -11,10 +11,10 @@ import models.MovingObject;
  * The Class InteractionController.
  */
 public class InteractionController implements ISubController {
-  
+
   /** The fishes. */
   private List<Fish> fishes;
-  
+
   /** The foods. */
   private List<Food> foods;
 
@@ -29,7 +29,9 @@ public class InteractionController implements ISubController {
     foods = foodController.getFoods();
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see controllers.ISubController#perform()
    */
   @Override

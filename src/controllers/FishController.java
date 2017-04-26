@@ -10,18 +10,17 @@ import models.Food;
 
 // TODO: Auto-generated Javadoc
 /**
-* FishController class
-* managing fishes outside its behavior. 
-*
-*/
+ * FishController class managing fishes outside its behavior.
+ *
+ */
 public class FishController implements ISubController {
-  
+
   /** The fishes. */
   private List<Fish> fishes;
-  
+
   /** The to remove. */
   private List<Fish> toRemove;
-  
+
   /**
    * Instantiates a new fish controller.
    */
@@ -39,10 +38,13 @@ public class FishController implements ISubController {
     return fishes;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see controllers.ISubController#perform()
    */
-  /* implementing from ISubController interface method
+  /*
+   * implementing from ISubController interface method
    * 
    */
   @Override

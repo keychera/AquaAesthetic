@@ -5,19 +5,19 @@ package models;
  * The Class MovingObject.
  */
 public abstract class MovingObject {
-  
+
   /** The Constant STANDARDDISTANCEPERSTEP. */
   protected final static int STANDARDDISTANCEPERSTEP = 10;
-  
+
   /** The x. */
   protected int x;
-  
+
   /** The y. */
   protected int y;
-  
+
   /** The real X. */
   private float realX;
-  
+
   /** The real Y. */
   private float realY;
 

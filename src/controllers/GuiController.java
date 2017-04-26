@@ -22,39 +22,39 @@ import views.StatusPanelView;
  * The Class GuiController.
  */
 public class GuiController extends JFrame implements ActionListener {
-  
+
   /** The app width. */
   private int appWidth;
-  
+
   /** The app height. */
   private int appHeight;
-  
+
   /** The aquarium panel. */
   private static JPanel aquariumPanel;
-  
+
   /** The control panel. */
   private static JPanel controlPanel;
-  
+
   /** The status panel. */
   private static JPanel statusPanel;
-  
+
   /** The add fish button. */
   private JButton addFishButton;
-  
+
   /** The add food button. */
   private JButton addFoodButton;
-  
+
   /** The sell fish button. */
   private JButton sellFishButton;
-  
+
   /** The pause button. */
   private JButton pauseButton;
 
   private SellDialog sellDialog;
 
-  
+
   /** The game rule controller. */
-  
+
   private GameRuleController gameRuleController;
 
   private class SellDialog extends JDialog implements ActionListener {
@@ -91,7 +91,7 @@ public class GuiController extends JFrame implements ActionListener {
 
     public List<Fish> getReturnMessage() {
       return gameRuleController.getFishes();
-      
+
     }
 
   }
@@ -154,7 +154,9 @@ public class GuiController extends JFrame implements ActionListener {
     statusPanel.repaint();
   }
 
-  /* action handler from GUI
+  /*
+   * action handler from GUI
+   * 
    * @param e ActionEvent action listener param
    */
   @Override

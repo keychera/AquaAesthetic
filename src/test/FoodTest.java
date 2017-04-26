@@ -12,15 +12,15 @@ import models.Food;
  */
 public class FoodTest {
 
-	/** The grass. */
-	Food grass = new Food(0,0);
-	
-	/**
-	 * Test food.
-	 */
-	@Test
-	public void testFood() {
-		assertFalse(grass.isOnRemoval());
-	}
+  /** The grass. */
+  Food grass = new Food(0, 0);
+
+  /**
+   * Test food.
+   */
+  @Test
+  public void testFood() {
+    assertFalse(grass.isOnRemoval());
+  }
 
 }

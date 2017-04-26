@@ -5,7 +5,7 @@ package controllers;
  * The Interface ISubController.
  */
 public interface ISubController {
-  
+
   /**
    * Perform.
    */

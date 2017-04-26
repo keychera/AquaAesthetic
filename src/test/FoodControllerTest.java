@@ -8,12 +8,12 @@ import controllers.FoodController;
 
 public class FoodControllerTest {
 
-	@Test
-	public void test() {
-		
-		FoodController fd = new FoodController();
-		fd.addNewEntity();
-		assertEquals(1,fd.getFoods().size());
-	}
+  @Test
+  public void test() {
+
+    FoodController fd = new FoodController();
+    fd.addNewEntity();
+    assertEquals(1, fd.getFoods().size());
+  }
 
 }

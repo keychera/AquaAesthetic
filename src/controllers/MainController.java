@@ -13,20 +13,20 @@ import javax.swing.SwingUtilities;
  * The Class MainController.
  */
 public class MainController {
-  
+
   /** The fish controller. */
   // controller to control
   private static FishController fishController;
-  
+
   /** The food controller. */
   private static FoodController foodController;
-  
+
   /** The interaction controller. */
   private static InteractionController interactionController;
-  
+
   /** The game loop controller. */
   private static GameLoopController gameLoopController;
-  
+
   /** The game rule controller. */
   private static GameRuleController gameRuleController;
 

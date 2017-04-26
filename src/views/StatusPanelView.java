@@ -14,13 +14,13 @@ import models.Fish;
  * The Class StatusPanelView.
  */
 public class StatusPanelView extends JPanel {
-  
+
   /** The fishes. */
   private List<Fish> fishes;
-  
+
   /** The money status. */
   private JLabel moneyStatus;
-  
+
   /** The fish number status. */
   private JLabel fishNumberStatus;
 
@@ -38,8 +38,10 @@ public class StatusPanelView extends JPanel {
     fishNumberStatus = new JLabel(Integer.toString(fishes.size()));
     add(fishNumberStatus);
   }
-  
-  /* (non-Javadoc)
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
    */
   @Override

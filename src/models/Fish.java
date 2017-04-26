@@ -7,25 +7,25 @@ import java.util.Random;
  * The Class Fish.
  */
 public class Fish extends MovingObject {
-  
+
   /** The distance per step. */
   private float distancePerStep = 2;
-  
+
   /** The next decision timer. */
   private int nextDecisionTimer;
-  
+
   /** The current target X. */
   private int currentTargetX;
-  
+
   /** The current target Y. */
   private int currentTargetY;
-  
+
   /** The target food. */
   private Food targetFood;
-  
+
   /** The hunger. */
   private int hunger;
-  
+
   /** The growth. */
   private int growth;
   private boolean removeFlag;
@@ -51,7 +51,9 @@ public class Fish extends MovingObject {
     removeFlag = false;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see models.MovingObject#move()
    */
   public void move() {
@@ -65,7 +67,7 @@ public class Fish extends MovingObject {
         Random rand = new Random();
         nextDecisionTimer = rand.nextInt(30) + 15;
         setTarget(rand.nextInt(Aquarium.WIDTH), rand.nextInt(Aquarium.HEIGHT));
-        distancePerStep = rand.nextInt(5) + STANDARDDISTANCEPERSTEP/2;
+        distancePerStep = rand.nextInt(5) + STANDARDDISTANCEPERSTEP / 2;
       } else {
         moveDirection(distancePerStep,
             (float) Math.atan2(currentTargetY - this.y, currentTargetX - this.x));
@@ -142,7 +144,7 @@ public class Fish extends MovingObject {
     return (dx < 10 && dy < 10);
   }
 
-  
+
   /**
    * Gets the hunger.
    *
@@ -151,7 +153,7 @@ public class Fish extends MovingObject {
   public int getHunger() {
     return hunger;
   }
-  
+
   /**
    * Gets the growth.
    *

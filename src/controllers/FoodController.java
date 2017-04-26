@@ -13,13 +13,13 @@ import models.Food;
  * The Class FoodController.
  */
 public class FoodController implements ISubController {
-  
+
   /** The foods. */
   private List<Food> foods;
-  
+
   /** The to remove. */
   private List<Food> toRemove;
-  
+
   /**
    * Instantiates a new food controller.
    */
@@ -37,7 +37,9 @@ public class FoodController implements ISubController {
     return foods;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see controllers.ISubController#perform()
    */
   @Override

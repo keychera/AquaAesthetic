@@ -5,7 +5,7 @@ package models;
  * The Class Food.
  */
 public class Food extends MovingObject {
-  
+
   /** The remove flag. */
   private boolean removeFlag;
 
@@ -19,19 +19,23 @@ public class Food extends MovingObject {
     super(x, y);
     removeFlag = false;
   }
+
   /**
    * Checks if is on removal.
    *
    * @return true, if is on removal
    */
-  public boolean isOnRemoval(){
+  public boolean isOnRemoval() {
     return removeFlag;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see models.MovingObject#move()
    */
-  /* method for moving food down the aquarium
+  /*
+   * method for moving food down the aquarium
    *
    */
   @Override
