@@ -17,19 +17,44 @@ import models.Fish;
 import views.AquariumView;
 import views.StatusPanelView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GuiController.
+ */
 public class GuiController extends JFrame implements ActionListener {
-  // app dimension
+  
+  /** The app width. */
   private int appWidth;
+  
+  /** The app height. */
   private int appHeight;
-  // app swing component
+  
+  /** The aquarium panel. */
   private static JPanel aquariumPanel;
+  
+  /** The control panel. */
   private static JPanel controlPanel;
+  
+  /** The status panel. */
   private static JPanel statusPanel;
+  
+  /** The add fish button. */
   private JButton addFishButton;
+  
+  /** The add food button. */
   private JButton addFoodButton;
+  
+  /** The sell fish button. */
   private JButton sellFishButton;
+  
+  /** The pause button. */
   private JButton pauseButton;
+
   private SellDialog sellDialog;
+
+  
+  /** The game rule controller. */
+  
   private GameRuleController gameRuleController;
 
   private class SellDialog extends JDialog implements ActionListener {
@@ -71,6 +96,11 @@ public class GuiController extends JFrame implements ActionListener {
 
   }
 
+  /**
+   * Instantiates a new gui controller.
+   *
+   * @param gameRuleController the game rule controller
+   */
   public GuiController(GameRuleController gameRuleController) {
     appWidth = Aquarium.WIDTH;
     appHeight = Aquarium.HEIGHT + 100;
@@ -103,6 +133,12 @@ public class GuiController extends JFrame implements ActionListener {
     setVisible(true);
   }
 
+  /**
+   * Adds the button to control panel.
+   *
+   * @param button the button
+   * @param label the label
+   */
   private void addButtonToControlPanel(JButton button, String label) {
     button.setActionCommand(button.getText());
     button.setText(label);
@@ -110,11 +146,17 @@ public class GuiController extends JFrame implements ActionListener {
     controlPanel.add(button);
   }
 
+  /**
+   * Static repaint.
+   */
   public static void staticRepaint() {
     aquariumPanel.repaint();
     statusPanel.repaint();
   }
 
+  /* action handler from GUI
+   * @param e ActionEvent action listener param
+   */
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand() == "pause") {

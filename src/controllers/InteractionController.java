@@ -6,15 +6,32 @@ import models.Fish;
 import models.Food;
 import models.MovingObject;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InteractionController.
+ */
 public class InteractionController implements ISubController {
+  
+  /** The fishes. */
   private List<Fish> fishes;
+  
+  /** The foods. */
   private List<Food> foods;
 
+  /**
+   * Instantiates a new interaction controller.
+   *
+   * @param fishController the fish controller
+   * @param foodController the food controller
+   */
   public InteractionController(FishController fishController, FoodController foodController) {
     fishes = fishController.getFishes();
     foods = foodController.getFoods();
   }
 
+  /* (non-Javadoc)
+   * @see controllers.ISubController#perform()
+   */
   @Override
   public void perform() {
     for (Fish fish : fishes) {
@@ -30,6 +47,12 @@ public class InteractionController implements ISubController {
     }
   }
 
+  /**
+   * Gets the closest food from.
+   *
+   * @param fish the fish
+   * @return the food
+   */
   private Food GetClosestFoodFrom(Fish fish) {
     if (foods.isEmpty()) {
       return null;
