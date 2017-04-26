@@ -1,0 +1,176 @@
+
+--------------------------------------------------
+- Package: controllers
+--------------------------------------------------
+
+Stats:
+    Total Classes: 10
+    Concrete Classes: 9
+    Abstract Classes: 1
+
+    Ca: 1
+    Ce: 2
+
+    A: 0.1
+    I: 0.67
+    D: 0.23
+
+Abstract Classes:
+    controllers.ISubController
+
+Concrete Classes:
+    controllers.FishController
+    controllers.FoodController
+    controllers.GameLoopController
+    controllers.GameRuleController
+    controllers.GuiController
+    controllers.GuiController$SellDialog
+    controllers.InteractionController
+    controllers.MainController
+    controllers.MainController$1
+
+Depends Upon:
+    models
+    views
+
+Used By:
+    main
+
+--------------------------------------------------
+- Package: main
+--------------------------------------------------
+
+Stats:
+    Total Classes: 1
+    Concrete Classes: 1
+    Abstract Classes: 0
+
+    Ca: 0
+    Ce: 1
+
+    A: 0
+    I: 1
+    D: 0
+
+Abstract Classes:
+
+Concrete Classes:
+    main.Main
+
+Depends Upon:
+    controllers
+
+Used By:
+    Not used by any packages.
+
+--------------------------------------------------
+- Package: models
+--------------------------------------------------
+
+Stats:
+    Total Classes: 4
+    Concrete Classes: 3
+    Abstract Classes: 1
+
+    Ca: 3
+    Ce: 0
+
+    A: 0.25
+    I: 0
+    D: 0.75
+
+Abstract Classes:
+    models.MovingObject
+
+Concrete Classes:
+    models.Aquarium
+    models.Fish
+    models.Food
+
+Depends Upon:
+    Not dependent on any packages.
+
+Used By:
+    controllers
+    test
+    views
+
+--------------------------------------------------
+- Package: test
+--------------------------------------------------
+
+Stats:
+    Total Classes: 7
+    Concrete Classes: 7
+    Abstract Classes: 0
+
+    Ca: 0
+    Ce: 1
+
+    A: 0
+    I: 1
+    D: 0
+
+Abstract Classes:
+
+Concrete Classes:
+    test.FishControllerTest
+    test.FishTest
+    test.FoodControllerTest
+    test.FoodTest
+    test.GameRuleControllerTest
+    test.InteractionControllerTest
+    test.MovingObjectTest
+
+Depends Upon:
+    models
+
+Used By:
+    Not used by any packages.
+
+--------------------------------------------------
+- Package: views
+--------------------------------------------------
+
+Stats:
+    Total Classes: 2
+    Concrete Classes: 2
+    Abstract Classes: 0
+
+    Ca: 1
+    Ce: 1
+
+    A: 0
+    I: 0.5
+    D: 0.5
+
+Abstract Classes:
+
+Concrete Classes:
+    views.AquariumView
+    views.StatusPanelView
+
+Depends Upon:
+    models
+
+Used By:
+    controllers
+
+
+--------------------------------------------------
+- Package Dependency Cycles:
+--------------------------------------------------
+
+
+--------------------------------------------------
+- Summary:
+--------------------------------------------------
+
+Name, Class Count, Abstract Class Count, Ca, Ce, A, I, D, V:
+
+controllers,10,1,1,2,0.1,0.67,0.23,1
+main,1,0,0,1,0,1,0,1
+models,4,1,3,0,0.25,0,0.75,1
+test,7,0,0,1,0,1,0,1
+views,2,0,1,1,0,0.5,0.5,1
+
