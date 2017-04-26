@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import models.Aquarium;
@@ -27,7 +27,21 @@ public class GuiController extends JFrame implements ActionListener {
   private JButton addFoodButton;
   private JButton sellFishButton;
   private JButton pauseButton;
+  private SellDialog sellDialog;
+  private JPanel sellPanel;
   private GameRuleController gameRuleController;
+  
+  private class SellDialog extends JDialog implements ActionListener{
+    public SellDialog(JFrame frame, String string, boolean b) {
+      super(frame,string,b);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      dispose();      
+    }
+    
+  }
 
   public GuiController(GameRuleController gameRuleController) {
     appWidth = Aquarium.WIDTH;
@@ -50,6 +64,13 @@ public class GuiController extends JFrame implements ActionListener {
     addButtonToControlPanel(pauseButton, "Pause");
 
     statusPanel = new StatusPanelView(gameRuleController.getFishes());
+    
+    sellDialog = new SellDialog(this, "Sell", true);
+    sellDialog.setResizable(false);
+    sellDialog.getContentPane().add(createRootPane());
+    sellDialog.setVisible(false);
+    sellDialog.setLocation(this.getWidth()/3, this.getHeight()/5);
+    
 
     setLayout(new BorderLayout());
     add(aquariumPanel, BorderLayout.CENTER);
@@ -82,7 +103,15 @@ public class GuiController extends JFrame implements ActionListener {
       }
     } else if (e.getActionCommand() == "sell fish") {
       GameLoopController.togglePause();
-      JOptionPane.showMessageDialog(this, "Selling fish is not implemented");
+      sellPanel = new JPanel();
+      sellPanel.setLayout(new BorderLayout());
+      sellPanel.add(new JLabel("hey"), BorderLayout.CENTER);
+      JButton finishButton = new JButton("hey");
+      finishButton.addActionListener(sellDialog);
+      sellPanel.add(finishButton, BorderLayout.PAGE_END);
+      sellDialog.getContentPane().add(sellPanel);
+      sellDialog.setSize(this.getWidth()/3, this.getHeight()/6);
+      sellDialog.setVisible(true);
       GameLoopController.togglePause();
     } else if (e.getActionCommand() == "add fish") {
       if (!GameLoopController.isAppPaused()) {
