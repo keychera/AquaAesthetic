@@ -23,7 +23,8 @@ public class AquariumView extends JPanel {
   private ArrayList<Graphics2D> arrayG;
   private BufferedImage imgBG = null;
   private BufferedImage imgFood = null;
-  private BufferedImage imgFish = null;
+  private BufferedImage imgFish1 = null;
+  private BufferedImage imgFish2 = null;
 
   public AquariumView(List<Fish> fishes, List<Food> foods) {
     this.fishes = fishes;
@@ -32,7 +33,8 @@ public class AquariumView extends JPanel {
     try {
     	imgBG = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/aesthetic_background.jpeg"));
 	    imgFood = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/1.png"));
-	    imgFish = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/2.png"));
+	    imgFish1 = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/img/fish_red.png"));
+	    imgFish2 = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/img/fish.png"));
     } catch(IOException e) {
         e.printStackTrace();
     }
@@ -54,7 +56,9 @@ public class AquariumView extends JPanel {
     arrayG = new ArrayList<Graphics2D>();
     for (int i=0; i<fishes.size(); i++) {
     	arrayG.add((Graphics2D) g);
-    	arrayG.get(i).drawImage(imgFish, fishes.get(i).getX(), fishes.get(i).getY(), null);
+//    	if (fishes.get(i).getGrowth > 1000) {
+    		arrayG.get(i).drawImage(imgFish1, fishes.get(i).getX(), fishes.get(i).getY(), null);
+//    	}
     }
   }
 }
