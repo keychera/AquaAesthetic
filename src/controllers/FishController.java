@@ -32,6 +32,7 @@ public class FishController implements ISubController {
     }
   }
 
+
   private void removeObsoleteFishes() {
     if (!toRemove.isEmpty()) {
       for(Fish fish : toRemove) {

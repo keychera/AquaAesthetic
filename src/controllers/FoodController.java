@@ -55,4 +55,20 @@ public class FoodController implements ISubController {
     Food newFood = new Food(randX,y);
     foods.add(newFood);
   }
+
+//	@Override
+	public void deleteSpecificEntity(int aquariumWidth, int aquariumHeight) {
+		Random random = new Random();
+		int bound =  aquariumWidth / 10;
+	    int randX = bound + random.nextInt(aquariumWidth - (2 * bound));
+	    int y = -5;
+		Food food = new Food(randX,y);
+		foods.remove(food);
+	}
+
+//	@Override
+	public void deleteSpecificEntity() {
+		Food newFood = new Food(50,-5);
+		foods.remove(newFood);
+	}
 }
