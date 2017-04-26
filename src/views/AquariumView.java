@@ -31,6 +31,7 @@ public class AquariumView extends JPanel {
     this.foods = foods;
     
     try {
+        //TODO make the filepath relative to project path, not absolute like this
     	imgBG = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/aesthetic_background.jpeg"));
 	    imgFood = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/1.png"));
 	    imgFish1 = ImageIO.read(new File("G:/ITB/Kuliah/TUGAS/OOP/Tubes 3/AquaAesthetic/res/img/fish_red.png"));
