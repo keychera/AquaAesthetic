@@ -9,6 +9,5 @@ public class MainControllerTest {
 	@Test
 	public void testInitializeControllers() {
 		fail("Not yet implemented");
-	}
-	
+	}	
 }

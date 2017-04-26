@@ -1,6 +1,7 @@
 package models;
 
 public class Coin extends MovingObject {
+	private static final int COINVALDEF = 10;
 	private boolean taken;
 	
 	public Coin(int x, int y) {
