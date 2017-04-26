@@ -56,7 +56,7 @@ public class FoodController implements ISubController {
     foods.add(newFood);
   }
 
-	@Override
+//	@Override
 	public void deleteSpecificEntity(int aquariumWidth, int aquariumHeight) {
 		Random random = new Random();
 		int bound =  aquariumWidth / 10;
@@ -66,7 +66,7 @@ public class FoodController implements ISubController {
 		foods.remove(food);
 	}
 
-	@Override
+//	@Override
 	public void deleteSpecificEntity() {
 		Food newFood = new Food(50,-5);
 		foods.remove(newFood);
